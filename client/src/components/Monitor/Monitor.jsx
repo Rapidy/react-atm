@@ -35,11 +35,7 @@ export default function Monitor() {
           Вы вывели денег на сумму: <b>{withdrawedMoney}</b>
         </div>
         <div className='monitor-container__item'>
-          {leftover && (
-            <p>
-              Остаток от снятия <b>{leftover}</b>
-            </p>
-          )}
+          Остаток от снятия <b>{leftover}</b>
         </div>
       </div>
     </section>

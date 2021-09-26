@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './modes.sass';
 import { useDispatch } from 'react-redux';
 import { setMode } from '../../redux/actions/atmActions';
@@ -63,6 +63,13 @@ export default function Modes() {
 
   const dispatch = useDispatch();
   const [activeMode, setActiveMode] = useState(0);
+  const modesRef = useRef();
+
+  useEffect(() => {
+    modesRef.current.addEventListener('keypress', function (e) {
+      e.stopImmediatePropagation();
+    });
+  }, []);
 
   const availableModes = Object.values(modes).map((mode, i) => {
     return (
@@ -81,5 +88,9 @@ export default function Modes() {
     setActiveMode(i);
   }
 
-  return <div className='modes'>{availableModes}</div>;
+  return (
+    <div ref={modesRef} className='modes'>
+      {availableModes}
+    </div>
+  );
 }

@@ -10,7 +10,7 @@ const initialState = {
     { number: 50, amount: 10000 },
   ],
   result: [],
-  leftover: null,
+  leftover: 0,
   withdrawedMoney: 0,
 };
 
