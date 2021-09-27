@@ -70,27 +70,25 @@ export default function Modes() {
       e.stopImmediatePropagation();
     });
   }, []);
-
-  const availableModes = Object.values(modes).map((mode, i) => {
-    return (
-      <button
-        key={i}
-        className={`modes__btn ${i === activeMode ? 'active' : ''}`}
-        onClick={(e) => changeMode(mode, i)}>
-        {i + 1} вариант
-      </button>
-    );
-  });
+  console.log(activeMode);
 
   function changeMode(mode, i) {
     dispatch(setMode(mode));
-    localStorage.setItem('mode', i);
     setActiveMode(i);
   }
 
   return (
     <div ref={modesRef} className='modes'>
-      {availableModes}
+      {Object.values(modes).map((mode, i) => {
+        return (
+          <button
+            key={i}
+            className={`modes__btn ${i === activeMode ? 'active' : ''}`}
+            onClick={() => changeMode(mode, i)}>
+            {i + 1} вариант
+          </button>
+        );
+      })}
     </div>
   );
 }

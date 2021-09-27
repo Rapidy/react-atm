@@ -9,7 +9,6 @@ const initialState = {
     { number: 100, amount: 8000 },
     { number: 50, amount: 10000 },
   ],
-  result: [],
   leftover: 0,
   withdrawedMoney: 0,
 };
@@ -20,8 +19,7 @@ export default function atmRecuder(state = initialState, action) {
       return {
         numbers: '',
         bills: action.payload,
-        result: [],
-        leftover: null,
+        leftover: 0,
         withdrawedMoney: 0,
       };
 
@@ -47,7 +45,6 @@ export default function atmRecuder(state = initialState, action) {
       const newState = {
         numbers: state.numbers,
         bills: state.bills,
-        result: [],
       };
 
       if (newState.numbers > 0) {
@@ -57,7 +54,6 @@ export default function atmRecuder(state = initialState, action) {
               break;
             } else {
               newState.numbers -= newState.bills[i].number;
-              newState.result.push(newState.bills[i].number);
               newState.bills[i].amount -= 1;
             }
           }
@@ -68,7 +64,6 @@ export default function atmRecuder(state = initialState, action) {
         ...state,
         leftover: newState.numbers,
         bills: newState.bills,
-        result: newState.result,
         withdrawedMoney: state.numbers - newState.numbers,
       };
     }
